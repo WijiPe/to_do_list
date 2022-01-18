@@ -1,10 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Task from './Components/task';
 
-function App() {
+
+const App = () => {
+
   return (
     <div className="App">
-     
+      <Task  />
     </div>
   );
 }
