@@ -8,6 +8,7 @@ const Task = (props) => {
 
     const addToDoList = (newToDo) => {
         setToDoList([...ToDoList, newToDo])
+        localStorage.setItem("TodoList", JSON.stringify(ToDoList))
     }
 
     const onChange = (status, idx) =>{
@@ -15,6 +16,7 @@ const Task = (props) => {
         console.log(newToDoList, idx)
         newToDoList[idx].complete = status
         setToDoList(newToDoList)
+        localStorage.setItem("TodoList", JSON.stringify(newToDoList))
         
     }
 
@@ -22,14 +24,17 @@ const Task = (props) => {
         if(ToDoList[idx].complete === true){
             const newToDoList = ToDoList.filter((a , i) => i != idx)
             setToDoList(newToDoList)
+            localStorage.setItem("TodoList", JSON.stringify(newToDoList))
         }
-        
     }
 
     useEffect(() => {
-        effect
-
-    }
+        let tempTodoList = localStorage.getItem("TodoList")
+        tempTodoList = JSON.parse(tempTodoList)
+        if (localStorage.getItem("TodoList") != null){
+            setToDoList(tempTodoList)
+        }
+    },[])
 
     return (
         <div >
